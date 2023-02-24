@@ -9,3 +9,15 @@ a{
 li{
     list-style-type: none;
 }
+
+
+
+.country{
+    border: 1px solid gray;
+    background: #f0f0f0;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
