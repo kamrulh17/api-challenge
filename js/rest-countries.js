@@ -15,6 +15,7 @@ function createDiv(element){
         document.getElementById('all-countries').appendChild(div) ;
 }
 
+
 //empty innerHTML 
 function emptyInnerHtml(){
     document.getElementById('all-countries').innerHTML = '' ;
@@ -22,7 +23,6 @@ function emptyInnerHtml(){
 
 //display country name
 const displayCountryName = (data) =>{
-
     data.forEach(element => {
         createDiv(element) ;
     });
@@ -40,24 +40,23 @@ loadAllCountry() ;
 
 //load the searched country when search button is clicked
 const searchByCountry = (searchValue) => {
+    emptyInnerHtml() ;
     if(searchValue == ''){
-        emptyInnerHtml() ;
         loadAllCountry() ;
     }
     else{
-        emptyInnerHtml() ;
         fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
         .then(response => response.json()
         .then(data => displayCountryName(data)))
     }
 }
 
+
 //search button onclick
 function searchFunction(){
     const searchValue = document.getElementById('search-box').value ;
     searchByCountry(searchValue) ;
 }
-
 
 
 //load by region 
@@ -77,6 +76,5 @@ document.getElementById('select-region').addEventListener('change', function(eve
     if(region == 'all'){
         loadAllCountry() ;
     }
-
     else loadByRegion(region) ;
 })
