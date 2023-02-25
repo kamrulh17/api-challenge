@@ -1,15 +1,11 @@
-const loadAPI = () => {
-    fetch('https://restcountries.com/v3.1/all')
-.then(response => response.json()
-.then(data => displayCountryName(data)))
-}
-
-
-const displayCountryName = (data) =>{
+const displayCountryName = (data, str) =>{
     data.forEach(element => {
-        // console.log(element.name.common)
-        const div = document.createElement('div') ;
+        //make the container empty before if search button is clicked
+        if(str !== 'allCountry'){
+            document.getElementById('all-countries').innerHTML = '' ;
+        }
 
+        const div = document.createElement('div') ;
         div.innerHTML = `
         <div class="country">
             <div class="flag">
@@ -20,10 +16,29 @@ const displayCountryName = (data) =>{
             <h5 class="h5 my-3">Populataion : <span class="d-inline-block bg-light">${element.population}</span></h5>
             <button class="btn btn-primary my-3">Details</button>
         </div>` ;
+        div.classList.add('col-lg-3')
+        document.getElementById('all-countries').appendChild(div) ;
 
-    div.classList.add('col-lg-3')
-    document.getElementById('all-countries').appendChild(div) ;
     });
 }
 
-loadAPI() ;
+//load all the countries
+const loadAllCountry = () => {
+    fetch('https://restcountries.com/v3.1/all')
+.then(response => response.json()
+.then(data => displayCountryName(data, 'allCountry')))
+}
+loadAllCountry() ;
+
+
+//load the searched country when search button is clicked
+const loadCountry = (searchValue) => {
+    fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
+.then(response => response.json()
+.then(data => displayCountryName(data, 'country')))
+}
+//search button onclick
+function searchFunction(){
+    const searchValue = document.getElementById('search-box').value ;
+    loadCountry(searchValue) ;
+}

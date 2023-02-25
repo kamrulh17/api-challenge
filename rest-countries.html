@@ -14,7 +14,14 @@
 
 <section class="container">
         <div id="countries" class="mt-5">
+
+            <div class="search-area w-90 mx-auto text-center my-5 d-flex align-items-center">
+                <input type="text" placeholder="Search country by name" class="w-50 p-2 my-2 ms-auto" id="search-box">
+                <button type="submit" class="btn btn-primary w-25 ms-3 me-auto" onclick="searchFunction()">Search</button>
+            </div>
+
             <div class="row g-4" id="all-countries">
+
                 <!-- <div class="col-lg-3">
                     <div class="country">
                         <div class="flag">
@@ -25,6 +32,7 @@
                         <h5 class="h5 my-3">Populataion : <span class="d-inline-block bg-light">100</span></h5>
                     </div>
                 </div> -->
+
             </div>
         </div>
 </section>
