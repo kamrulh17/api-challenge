@@ -34,6 +34,9 @@ loadAllCountry() ;
 
 //load the searched country when search button is clicked
 const searchByCountry = (searchValue) => {
+    if(searchValue == ''){
+        loadAllCountry() ;
+    }
     fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
 .then(response => response.json()
 .then(data => displayCountryName(data, 'country')))
@@ -57,7 +60,7 @@ function loadByRegion(region, secondParameter){
 document.getElementById('select-region').addEventListener('change', function(event){
 
     const region = event.target.value ;
-    
+
     //everytime change happens -> set the innerHTML = '' ;
     loadByRegion(region, 'region');
 
