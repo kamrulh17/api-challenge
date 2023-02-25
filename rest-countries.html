@@ -16,8 +16,20 @@
         <div id="countries" class="mt-5">
 
             <div class="search-area w-90 mx-auto text-center my-5 d-flex align-items-center">
-                <input type="text" placeholder="Search country by name" class="w-50 p-2 my-2 ms-auto" id="search-box">
+                <input type="text" placeholder="Search by country name" class="w-50 p-2 my-2 ms-auto" id="search-box">
                 <button type="submit" class="btn btn-primary w-25 ms-3 me-auto" onclick="searchFunction()">Search</button>
+            </div>
+            <div class="selection-menu my-4">
+                <label for="select-region">Filter by region :</label>
+                <select name="regions" id="select-region">
+                    <option value="all">All</option>
+                    <option value="asia">Asia</option>
+                    <option value="europe">Europe</option>
+                    <option value="africa">Africa</option>
+                    <option value="ame">America</option>
+                    <option value="australia">Australia</option>
+                    <option value="oceania">Antarctica</option>
+                </select>
             </div>
 
             <div class="row g-4" id="all-countries">
