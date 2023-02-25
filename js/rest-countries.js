@@ -1,12 +1,6 @@
-const displayCountryName = (data, str) =>{
-    data.forEach(element => {
-        //make the container empty before if search button is clicked
-        if(str !== 'allCountry'){
-            document.getElementById('all-countries').innerHTML = '' ;
-        }
-        console.log(element) ;
-
-        const div = document.createElement('div') ;
+//create div
+function createDiv(element){
+    const div = document.createElement('div') ;
         div.innerHTML = `
         <div class="country">
             <div class="flag">
@@ -19,15 +13,27 @@ const displayCountryName = (data, str) =>{
         </div>` ;
         div.classList.add('col-lg-3')
         document.getElementById('all-countries').appendChild(div) ;
+}
 
+//empty innerHTML 
+function emptyInnerHtml(){
+    document.getElementById('all-countries').innerHTML = '' ;
+}
+
+//display country name
+const displayCountryName = (data) =>{
+
+    data.forEach(element => {
+        createDiv(element) ;
     });
 }
+
 
 //load all the countries
 const loadAllCountry = () => {
     fetch('https://restcountries.com/v3.1/all')
 .then(response => response.json()
-.then(data => displayCountryName(data, 'allCountry')))
+.then(data => displayCountryName(data))) //, 'allCountry'
 }
 loadAllCountry() ;
 
@@ -35,11 +41,15 @@ loadAllCountry() ;
 //load the searched country when search button is clicked
 const searchByCountry = (searchValue) => {
     if(searchValue == ''){
+        emptyInnerHtml() ;
         loadAllCountry() ;
     }
-    fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
-.then(response => response.json()
-.then(data => displayCountryName(data, 'country')))
+    else{
+        emptyInnerHtml() ;
+        fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
+        .then(response => response.json()
+        .then(data => displayCountryName(data)))
+    }
 }
 
 //search button onclick
@@ -54,18 +64,19 @@ function searchFunction(){
 function loadByRegion(region, secondParameter){
     fetch(`https://restcountries.com/v3.1/region/${region}`)
     .then(response => response.json())
-    .then(data => displayCountryName(data, secondParameter)) ;
+    .then(data => displayCountryName(data)) ;
 }
 
-document.getElementById('select-region').addEventListener('change', function(event){
 
+document.getElementById('select-region').addEventListener('change', function(event){
     const region = event.target.value ;
 
-    //everytime change happens -> set the innerHTML = '' ;
-    loadByRegion(region, 'region');
+    /* everytime change happens -> set the innerHTML = '' ; */
+    emptyInnerHtml() ;
 
     if(region == 'all'){
         loadAllCountry() ;
     }
-    else loadByRegion(region, 'allCountry') ;
+
+    else loadByRegion(region) ;
 })
