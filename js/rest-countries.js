@@ -30,10 +30,17 @@ const displayCountryName = (data) =>{
 
 
 //load all the countries
-const loadAllCountry = () => {
-    fetch('https://restcountries.com/v3.1/all')
-.then(response => response.json()
-.then(data => displayCountryName(data))) //, 'allCountry'
+const loadAllCountry = async() => {
+    //async() await ...
+    const url = 'https://restcountries.com/v3.1/all' ;
+    const response = await fetch(url) ;
+    const data = await response.json() ;
+    displayCountryName(data) ;
+
+    //another way
+    /* fetch('https://restcountries.com/v3.1/all')
+    .then(response => response.json()
+    .then(data => displayCountryName(data))) */
 }
 loadAllCountry() ;
 

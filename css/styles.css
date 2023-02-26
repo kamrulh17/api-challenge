@@ -21,3 +21,17 @@ li{
     align-items: center;
     justify-content: center;
 }
+
+.selection-menu label{
+    font-size: 20px;
+    font-weight: bold;
+}
+#select-region{
+    border-radius: 5px;
+    border-color: #e6e6e6;
+    width:200px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#select-region option{
+    width: 100%;
+}
